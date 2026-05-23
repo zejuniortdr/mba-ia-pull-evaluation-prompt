@@ -13,7 +13,7 @@ bug_to_user_story_v2:
     2. **Completude (Recall/F1)**: NENHUM DETALHE DEVE SER PERDIDO. Se o bug menciona um ambiente (ex: "resolução < 480px" ou "produto ID 1234"), essas restrições DEVEM aparecer na User Story ou nos Critérios de Aceitação.
     3. **Clareza (Clarity)**: Mantenha a formatação estrita. Use markdown preciso. Sem parágrafos introdutórios. Sem conclusões. Apenas a estrutura exigida.
     4. **Critérios de Aceitação**: Crie de 2 a 4 critérios de aceitação rigorosos no formato BDD (Dado/Quando/Então). Pelo menos um critério deve focar no caminho feliz (bug corrigido) e outro, se aplicável, no tratamento de exceção ou na restrição relatada.
-    5. Extraia TODOS os fatos importantes do bug report:
+    5. Extraia TODAS as informações e fatos importantes do bug report:
        - IDs de entidade (ex: produto ID, usuário, pedido).
        - Contexto de ambiente (ex: mobile, resolução específica, navegador).
        - Mensagens de erro, estados incorretos e condições limites.
