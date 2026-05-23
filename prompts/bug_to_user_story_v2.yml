@@ -12,15 +12,33 @@ bug_to_user_story_v2:
     1. **Precisão (Precision)**: EXTRAIA, não invente. Utilize EXATAMENTE os termos, mensagens de erro, resoluções e limites numéricos relatados no bug. Nunca adicione melhorias que o usuário não pediu.
     2. **Completude (Recall/F1)**: NENHUM DETALHE DEVE SER PERDIDO. Se o bug menciona um ambiente (ex: "resolução < 480px" ou "produto ID 1234"), essas restrições DEVEM aparecer na User Story ou nos Critérios de Aceitação.
     3. **Clareza (Clarity)**: Mantenha a formatação estrita. Use markdown preciso. Sem parágrafos introdutórios. Sem conclusões. Apenas a estrutura exigida.
-    4. Crie de 2 a 4 critérios de aceitação rigorosos no formato BDD (Dado/Quando/Então). Pelo menos um critério deve focar no caminho feliz (bug corrigido) e outro, se aplicável, no tratamento de exceção ou na restrição relatada.
+    4. **Critérios de Aceitação**: Crie de 2 a 4 critérios de aceitação rigorosos no formato BDD (Dado/Quando/Então). Pelo menos um critério deve focar no caminho feliz (bug corrigido) e outro, se aplicável, no tratamento de exceção ou na restrição relatada.
+    5. Extraia TODOS os fatos importantes do bug report:
+       - IDs de entidade (ex: produto ID, usuário, pedido).
+       - Contexto de ambiente (ex: mobile, resolução específica, navegador).
+       - Mensagens de erro, estados incorretos e condições limites.
+    6. Se algum desses detalhes aparecer no bug report,
+       ele DEVE ser mencionado na User Story ou em pelo menos
+       um critério de aceitação.
+    7. Pelo menos um critério de aceitação deve mencionar explicitamente
+       o contexto do problema (ex: resolução, dispositivo, rota, ID).
+    8. Pelo menos um critério de aceitação deve descrever o comportamento
+       CORRIGIDO exatamente no cenário em que o bug ocorre.
+    9. Sempre que possível, reutilize exatamente os mesmos termos
+       técnicos, rótulos de botões, mensagens de erro e condições
+       descritos no bug report (sem traduzir ou trocar por sinônimos),
+       exceto se o texto original estiver claramente incorreto.
 
     ## Estrutura Obrigatória
 
     ## User Story
 
-    **Como um** [Persona inferida estritamente do bug report],
-    **Eu quero** [Ação esperada ou correção do comportamento falho],
-    **Para que** [Valor ou impacto positivo direto da correção].
+    **Como um** [tipo de usuário ou papel descrito no bug report
+    (por exemplo, cliente, administrador, usuário mobile, etc.],
+    **Eu quero** [realizar exatamente a ação descrita no bug report,
+    incluindo o contexto relevante (tela, dispositivo, fluxo)],
+    **Para que** [eu obtenha o benefício diretamente associado
+    à correção do problema relatado].
 
     ## Critérios de Aceitação
 
@@ -73,8 +91,13 @@ bug_to_user_story_v2:
       **Então** todas as opções de navegação devem funcionar adequadamente.
 
   user_prompt: |
-    Converta o bug report fornecido abaixo em uma User Story seguindo rigorosamente a estrutura e regras estabelecidas. 
-    Lembre-se: preserve todos os detalhes originais e NENHUMA informação extra deve ser inventada.
+    Converta o bug report fornecido abaixo em uma User Story seguindo rigorosamente
+    a estrutura e regras estabelecidas.
+
+    Foque em:
+    - preservar TODAS as informações detalhadas importantes do bug report;
+    - reutilizar IDs, termos e mensagens específicos;
+    - evitar qualquer informação que não esteja no texto.
 
     Bug Report:
     {bug_report}
