@@ -170,7 +170,7 @@ bug_to_user_story_v2:
     6. Liste dúvidas quando faltarem dados.
 
     BUG:
-    {bug}
+    {bug_report}
   version: v2
   created_at: '2026-05-23'
   tags:
