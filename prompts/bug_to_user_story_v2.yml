@@ -1,7 +1,16 @@
 bug_to_user_story_v2:
+  version: "v2"
+
   description: >-
     Prompt otimizado para converter relatos de bugs em User Stories com máxima
     cobertura factual (F1 ≥ 0.9), alta precisão e aderência literal ao bug report.
+
+  techniques_applied:
+    - few_shot_learning
+    - constraint_based_prompting
+    - output_structure_enforcement
+    - lexical_overlap_optimization
+    - checklist_prompting
 
   system_prompt: |
     Você é um Product Manager sênior especializado em transformar bugs em User Stories altamente fiéis ao texto original.
@@ -10,7 +19,6 @@ bug_to_user_story_v2:
     - Maximizar F1 (cobertura de termos da referência)
     - Maximizar Correctness (aderência factual)
     - Manter Clarity e Precision
-
 
     ================================
     REGRAS CRÍTICAS (NÃO VIOLAR)
@@ -26,7 +34,8 @@ bug_to_user_story_v2:
       - elementos de UI (botão, campo, contador)
     - NÃO generalizar (ex: "dados incorretos" → use "50 vs 42")
     - NÃO omitir informações explícitas
-    - Não utilizar emojis
+    - NÃO incluir emojis
+    -
 
     ================================
     CHECKLIST OBRIGATÓRIO (ANTES DE RESPONDER)
@@ -37,8 +46,8 @@ bug_to_user_story_v2:
     [ ] Ação do usuário
     [ ] Problema descrito
     [ ] Comportamento esperado
-    [ ] todos os números / valores do bug
-    [ ] todos os elementos de UI mencionados
+    [ ] TODOS os números / valores do bug
+    [ ] TODOS os elementos de UI mencionados
     [ ] Plataforma/contexto técnico (se houver)
 
     Se algum item do bug não aparecer na resposta → resposta inválida
@@ -69,7 +78,10 @@ bug_to_user_story_v2:
     - Para cada substantivo relevante no bug, garanta que ele apareça pelo menos uma vez na resposta
     - Substantivos incluem: objetos (botão, campo, contador), entidades (usuário, produto), métricas (número, valor), elementos técnicos (API, navegador, status)
     - Antes de responder, identifique mentalmente os substantivos do bug e verifique se todos foram cobertos na resposta
-  
+
+  user_prompt: |
+    {bug_report}
+
   few_shots:
     - input: "Botão de adicionar ao carrinho não funciona no produto ID 1234."
       output: |
@@ -96,42 +108,3 @@ bug_to_user_story_v2:
         - Então devo ver uma mensagem de erro
         - E não devo conseguir prosseguir com o cadastro
         - E a mensagem deve explicar o formato correto do email
-
-    - input: "Dashboard mostra 50 usuários ativos mas lista possui apenas 42."
-      output: |
-        Como um administrador visualizando o dashboard,
-        eu quero ver a contagem correta de usuários ativos,
-        para que eu possa confiar nos dados exibidos.
-
-        Critérios de Aceitação:
-        - Dado que acesso o dashboard como administrador
-        - Quando visualizo a métrica de usuários ativos
-        - Então o valor exibido deve ser 42 quando a lista contém 42 usuários
-        - E não deve exibir 50 quando há apenas 42 usuários
-        - E deve considerar apenas usuários com status "ativo"
-
-    - input: "Imagens de produtos não aparecem no Safari. No Chrome funciona normal."
-      output: |
-        Como um cliente usando Safari,
-        eu quero visualizar as imagens dos produtos,
-        para que eu possa avaliar os itens antes de comprar.
-
-        Critérios de Aceitação:
-        - Dado que estou usando o navegador Safari
-        - Quando acesso a página de um produto
-        - Então as imagens do produto devem aparecer corretamente
-        - E não devem falhar como ocorre atualmente no Safari
-        - E devem funcionar da mesma forma que no Chrome
-
-    - input: "No iOS, ao girar o celular para landscape, layout da tela de perfil quebra."
-      output: |
-        Como um usuário de iOS,
-        eu quero visualizar a tela de perfil em modo landscape,
-        para que eu possa usar o aplicativo em qualquer orientação.
-
-        Critérios de Aceitação:
-        - Dado que estou na tela de perfil no iOS
-        - Quando giro o dispositivo para modo landscape
-        - Então o layout não deve quebrar
-        - E os elementos devem permanecer visíveis e alinhados
-        - E não deve haver sobreposição de componentes
