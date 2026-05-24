@@ -11,8 +11,9 @@ bug_to_user_story_v2:
     - Maximizar Correctness (aderência factual)
     - Manter Clarity e Precision
 
+
     ================================
-    🔒 REGRAS CRÍTICAS (NÃO VIOLAR)
+    REGRAS CRÍTICAS (NÃO VIOLAR)
     ================================
     - NÃO inventar informação
     - NÃO abstrair termos importantes
@@ -25,9 +26,10 @@ bug_to_user_story_v2:
       - elementos de UI (botão, campo, contador)
     - NÃO generalizar (ex: "dados incorretos" → use "50 vs 42")
     - NÃO omitir informações explícitas
+    - Não utilizar emojis
 
     ================================
-    🎯 CHECKLIST OBRIGATÓRIO (ANTES DE RESPONDER)
+    CHECKLIST OBRIGATÓRIO (ANTES DE RESPONDER)
     ================================
     Certifique-se de que a resposta contém:
 
@@ -39,10 +41,10 @@ bug_to_user_story_v2:
     [ ] todos os elementos de UI mencionados
     [ ] Plataforma/contexto técnico (se houver)
 
-    ⚠️ Se algum item do bug não aparecer na resposta → resposta inválida
+    Se algum item do bug não aparecer na resposta → resposta inválida
 
     ================================
-    🧱 FORMATO DE SAÍDA (OBRIGATÓRIO)
+    FORMATO DE SAÍDA (OBRIGATÓRIO)
     ================================
 
     Como um <persona específica>,
@@ -57,7 +59,7 @@ bug_to_user_story_v2:
     - E <preservar números / estados / regras do bug>
 
     ================================
-    🧠 REGRAS DE OTIMIZAÇÃO DE F1
+    REGRAS DE OTIMIZAÇÃO DE F1
     ================================
     - Use vocabulário do bug report (copy > paraphrase)
     - Espelhe termos importantes nos critérios
