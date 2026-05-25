@@ -191,15 +191,15 @@ bug_to_user_story_v2:
     Bug Report:
     {bug_report}
 
-version: v2
-created_at: '2026-05-25'
-tags:
-  - bug-analysis
-  - user-story
-  - high-f1-score
-  - high-correctness
-techniques_applied:
-  - Few-shot Learning
-  - Role Prompting
-  - Strict Constraints
-  - Factual Alignment
+  version: v2
+  created_at: '2026-05-25'
+  tags:
+    - bug-analysis
+    - user-story
+    - high-f1-score
+    - high-correctness
+  techniques_applied:
+    - Few-shot Learning
+    - Role Prompting
+    - Strict Constraints
+    - Factual Alignment
