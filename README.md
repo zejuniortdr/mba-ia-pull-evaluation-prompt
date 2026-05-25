@@ -334,3 +334,187 @@ python src/evaluate.py
 - **Não altere os datasets de avaliação** - apenas os prompts em `prompts/bug_to_user_story_v2.yml`
 - **Itere, itere, itere** - é normal precisar de 3-5 iterações para atingir 0.9 em todas as métricas
 - **Documente seu processo** - a jornada de otimização é tão importante quanto o resultado final
+
+---
+
+
+# Solução proposta: Otimização e Avaliação de Prompts com LangChain e LangSmith
+
+Este projeto demonstra o uso de técnicas avançadas de Prompt Engineering para refatorar prompts de baixa qualidade e validar as melhorias automaticamente utilizando LangChain e LangSmith. 
+
+O objetivo principal do projeto foi aprimorar um prompt de conversão de relatórios de bugs (Bug Reports) em Histórias de Usuário (User Stories), atingindo um score mínimo de **0.9** (90%) em cinco métricas rigorosas: **Helpfulness, Correctness, F1-Score, Clarity e Precision**.
+
+---
+
+## Como Executar
+
+### Pré-requisitos e Dependências
+Para executar este projeto, você precisará de:
+*   **Python 3.13** ou superior.
+*   Conta no **LangSmith** com acesso à sua API Key.
+*   Conta no **Google AI Studio** com acesso à API Key (para utilizar os modelos Gemini gratuitos).
+*   *Opcional (se usar OpenAI):* API Key da OpenAI.
+
+
+
+### Implementacoes realizadas:
+- [src/pull_prompts.py](./src/pull_prompts.py)
+- [src/push_prompts.py](./src/push_prompts.py)
+- [tests/test_prompts.py](./tests/test_prompts.py)
+- [prompts/test_prompts.py](./prompts/bug_to_user_story_v2.yml)
+
+![Testes](./output/images/tests_2026-05-25_17-21.png)
+
+### 1. Configuração do Ambiente
+
+Faça o clone do repositório e navegue até o diretório:
+```bash
+git clone git@github.com:zejuniortdr/mba-ia-pull-evaluation-prompt.git
+
+cd mba-ia-pull-evaluation-prompt
+```
+
+Crie e ative um ambiente virtual:
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+Instale as dependências:
+```bash
+pip install -r requirements.txt
+```
+
+Crie um arquivo `.env` na raiz do projeto (use o `.env.example` como referência) e preencha as suas credenciais:
+```env
+LANGSMITH_TRACING=true
+LANGSMITH_ENDPOINT="https://api.smith.langchain.com"
+LANGSMITH_API_KEY="<sua_chave_langsmith>"
+LANGSMITH_PROJECT="prompt-optimization-challenge-resolved"
+LANGCHAIN_TRACING_V2=false
+
+# Seu usuário no LangSmith Hub para pull/push dos prompts
+USERNAME_LANGSMITH_HUB="<seu_usuario_langsmith>"
+
+# LLM Providers
+LLM_PROVIDER="google"  # 'google' ou 'openai'
+GOOGLE_API_KEY="<sua_chave_gemini>"
+LLM_MODEL="gemini-2.5-flash"
+EVAL_MODEL="gemini-2.5-flash"
+
+
+
+# OpenAI Configuration
+OPENAI_API_KEY=
+
+#LLM_PROVIDER=openai
+#LLM_MODEL=gpt-4o-mini
+#EVAL_MODEL=gpt-4o
+```
+
+### 2. Comandos para cada fase do projeto
+
+**Fase 1: Puxar o Prompt Inicial (Ruim)**
+Este script baixa o prompt original de base:
+```bash
+python src/pull_prompts.py
+```
+
+**Fase 2: Refatoração**
+Edição manual do arquivo `prompts/bug_to_user_story_v2.yml` aplicando as técnicas descritas na seção abaixo.
+
+**Fase 3: Fazer o Push do Prompt Otimizado**
+Envio da versão otimizada (v2) para o seu LangSmith Hub:
+```bash
+python src/push_prompts.py
+```
+
+**Fase 4: Avaliar**
+Rodar os 15 exemplos do dataset contra o seu prompt v2 e exibe as métricas:
+```bash
+python src/evaluate.py
+```
+
+---
+
+##  Técnicas Aplicadas (Fase 2)
+
+O prompt original apresentava problemas de alucinação e falta de aderência técnica. Para atingir os scores > 0.9 em todas as métricas, apliquei as seguintes técnicas em `prompts/bug_to_user_story_v2.yml`:
+
+### 1. Role Prompting e Persona Específica
+*   **Por que:** Definir o papel ajuda o LLM a adequar o tom, o nível técnico e a abstrair melhor o contexto. O prompt inicial agia apenas como um "resumidor de texto".
+*   **Como apliquei:** Comecei o `system_prompt` definindo: *"Você é um Product Manager Sênior e Tech Lead especializado em transformar relatos de bugs em User Stories completas e acionáveis."* Isso instruiu o modelo a não apenas criar a *story*, mas também inferir melhorias técnicas exigidas pelas métricas.
+
+### 2. Strict Constraints (Restrições Rígidas e Factualidade)
+*   **Por que:** A métrica de *Precision* exige zero alucinações, enquanto o *F1-Score* despenca se informações literais do bug (IDs, rotas) forem perdidas.
+*   **Como apliquei:** Criei uma seção `REGRAS CRÍTICAS - PRESERVAÇÃO`, incluindo comandos como: *"Preserve números, IDs, endpoints, status e valores literais exatamente como aparecem"* e *"Use apenas aspas simples ('texto') [...] NUNCA use aspas duplas ("texto") na resposta"*. Essa última instrução também evitou erros de formatação JSON no avaliador.
+
+### 3. Domain Inference (Inferência Segura de Domínio)
+*   **Por que:** A métrica *Correctness* (e *Recall* do F1) exige que critérios de qualidade de software sejam deduzidos, mesmo que não estejam explícitos no relato (como avisos de erro, logs, acessibilidade ou paginação).
+*   **Como apliquei:** Instruí o modelo: *"Seu objetivo é extrair fatos, MAS TAMBÉM inferir padrões de qualidade"*. Exemplifiquei diretamente o que inferir: se é performance, pedir "background threads"; se é integração, "logs de auditoria".
+
+### 4. Conditional Formatting (Formatação Condicional)
+*   **Por que:** O dataset misturava bugs simples de UI com incidentes críticos envolvendo arquitetura. Formatos estáticos faziam o LLM estourar a resposta (sendo punido em *Clarity*) ou omitir detalhes (punido em *Recall*).
+*   **Como apliquei:** Criei três fluxos diferentes de output (Bugs Simples, Médios e Complexos), definindo quais seções devem ser renderizadas conforme a complexidade.
+
+### 5. Few-Shot Learning Direcionado
+*   **Por que:** A melhor forma de demonstrar como transformar um bug vago em uma estrutura densa (Contexto Técnico, Tasks Sugeridas, etc.) é dando exemplos perfeitos.
+*   **Como apliquei:** Inseri cinco exemplos práticos (*Few-shots*) cobrindo problemas de UI, Cálculos, Integração, Mobile ANR e Performance (Timeout de Query). Estes exemplos ensinam ao modelo a calibragem exata de quando ser breve e quando sugerir correções de código SQL ou paginação de threads.
+
+---
+
+## Resultados Finais
+
+Após as iterações, os resultados ultrapassaram as médias estipuladas pelo projeto. O F1-score e Correctness, que inicialmente sofriam pela omissão de dados, subiram consideravelmente graças às regras de inferência.
+
+### Tabela Comparativa: Prompts V1 vs V2
+
+| Métrica | V1 (Ruim) | V2 (Otimizado) | Status |
+| :--- | :--- | :--- | :--- |
+| **Helpfulness** | 0.45 | **0.95** | ✅ Aprovado |
+| **Correctness** | 0.52 | **0.97** | ✅ Aprovado |
+| **F1-Score** | 0.48 | **0.96** | ✅ Aprovado |
+| **Clarity** | 0.50 | **0.94** | ✅ Aprovado |
+| **Precision** | 0.46 | **0.97** | ✅ Aprovado |
+| **MÉDIA GERAL**| 0.4820 | **0.9592** | ✅ Aprovado |
+
+### Evidências e Screenshots
+*   **Screenshot do Terminal (`evaluate.py`):**
+    ![Texto Alternativo](./output/images/print-2026-05-25_14-40.png)
+
+*   **Screenshot do Dashboard do LangSmith (Atingindo >= 0.9):**
+    ![Dashboard LangSmith Avaliações](./output/images/prompt-optimization-challenge-resolved-LangSmith-05-25-2026_02_45_PM.png)
+
+---
+
+## Evidências no LangSmith
+
+Abaixo, seguem os links públicos do LangSmith com os detalhes das execuções e do tracing dos modelos.
+
+*   **Dashboard Público do LangSmith:** [Link do seu Projeto Público LangSmith]
+*   **Dataset Utilizado (15 exemplos):** 
+-  [Link do Dataset - Dash](https://smith.langchain.com/o/d14742cc-d035-472c-8c10-1c5f8bd48c9e/datasets/d17624fa-1f56-443a-9ba7-1d064aa1a351)
+![Dash](./output/images/mba-fullcycle-pull-evaluation-prompt-LangSmith-05-25-2026_05_13_PM.png)
+
+- [Link do Dataset - 15 exemplos](https://smith.langchain.com/o/d14742cc-d035-472c-8c10-1c5f8bd48c9e/datasets/d17624fa-1f56-443a-9ba7-1d064aa1a351/compare?selectedSessions=9b5939c3-7401-447e-b961-c540610aafbe)
+![Exemplos](./output/images/pg-bug_to_user_story_v2-gemini-3-1-pro-preview-640953de-LangSmith-05-25-2026_05_14_PM.png)
+
+
+### Tracing Detalhado (Exemplos)
+*   **Tracing Exemplo 1 (Bug Simples do Carrinho de compras - UI):** 
+[d244bee3-5d82-4a8a-b6a9-49db08054388](https://smith.langchain.com/o/d14742cc-d035-472c-8c10-1c5f8bd48c9e/projects/p/af5403b5-9119-4a84-8a32-ef76c260aa0b?runview=traces&timeModel=%7B%22duration%22%3A%223h%22%7D&peek=20260525T173650Zd244bee3-5d82-4a8a-b6a9-49db08054388&peeked_trace=20260525T173650311561Zd244bee3-5d82-4a8a-b6a9-49db08054388&scroll_to=input&searchModel=%7B%22filter%22%3A%22and%28eq%28is_root%2C+true%29%2C+like%28inputs%2C+%5C%22%25carrinho%25%5C%22%29%29%22%7D)
+
+    - [Run](./output/runs/run-d244bee3-5d82-4a8a-b6a9-49db08054388.json)
+
+
+*   **Tracing Exemplo 2 (Bug Complexo - Performance Móvel):** [79e26b4d-8c87-46b9-be2c-ac81023f6c79](https://smith.langchain.com/o/d14742cc-d035-472c-8c10-1c5f8bd48c9e/projects/p/af5403b5-9119-4a84-8a32-ef76c260aa0b?runview=traces&timeModel=%7B%22duration%22%3A%223h%22%7D&searchModel=%7B%22filter%22%3A%22and%28eq%28is_root%2C+true%29%2C+like%28inputs%2C+%5C%22%25m%C3%B3vel%25%5C%22%29%29%22%7D&peek=20260525T172920Z79e26b4d-8c87-46b9-be2c-ac81023f6c79&peeked_trace=20260525T172920939922Z79e26b4d-8c87-46b9-be2c-ac81023f6c79&scroll_to=output)
+
+    - [Run](./output/runs/run-79e26b4d-8c87-46b9-be2c-ac81023f6c79.json)
+
+*   **Tracing Exemplo 3 (Bug Médio - Cálculo com desconto):** [d17624fa-1f56-443a-9ba7-1d064aa1a351](https://smith.langchain.com/o/d14742cc-d035-472c-8c10-1c5f8bd48c9e/projects/p/af5403b5-9119-4a84-8a32-ef76c260aa0b?runview=traces&timeModel=%7B%22duration%22%3A%223h%22%7D&searchModel=%7B%22filter%22%3A%22and%28eq%28is_root%2C+true%29%2C+and%28like%28inputs%2C+%5C%22%25performance%25%5C%22%29%2C+like%28inputs%2C+%5C%22%25desconto%25%5C%22%29%29%29%22%7D&peek=20260525T172836Z6c1cf1e2-573e-4f97-993f-c60f6826e62e&peeked_trace=20260525T172836687239Z6c1cf1e2-573e-4f97-993f-c60f6826e62e&scroll_to=output)
+
+
+    - [Run](./output/runs/run-6c1cf1e2-573e-4f97-993f-c60f6826e62e.json)
+
+
+Para demais traces: [Acesse este link](https://smith.langchain.com/o/d14742cc-d035-472c-8c10-1c5f8bd48c9e/projects/p/af5403b5-9119-4a84-8a32-ef76c260aa0b?runview=traces)

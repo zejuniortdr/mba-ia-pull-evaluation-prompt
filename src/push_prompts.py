@@ -94,7 +94,7 @@ def push_prompt_to_langsmith(prompt_name: str, prompt_data: dict) -> bool:
             new_repo_description=prompt_data.get("description", ""),
         )
 
-        print(f"  ✓ Prompt publicado com sucesso (público)")
+        print("  ✓ Prompt publicado com sucesso (público)")
         print(f"  🔗 https://smith.langchain.com/prompts/{prompt_name.split('/')[-1]}")
         return True
 
@@ -164,7 +164,7 @@ def main():
     success = push_prompt_to_langsmith(prompt_hub_name, prompt_data)
 
     if success:
-        print(f"\n✅ Push concluído com sucesso!")
+        print("\n✅ Push concluído com sucesso!")
         print(f"\nPrompt publicado: {prompt_hub_name}")
         print("\nPróximos passos:")
         print("  1. Verifique em: https://smith.langchain.com/prompts")

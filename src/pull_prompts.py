@@ -9,12 +9,11 @@ Este script:
 SIMPLIFICADO: Usa serialização nativa do LangChain para extrair prompts.
 """
 
-import os
 import sys
 from pathlib import Path
 from dotenv import load_dotenv
 from langchain import hub
-from utils import save_yaml, check_env_vars, print_section_header
+from utils import check_env_vars, print_section_header
 
 load_dotenv()
 
