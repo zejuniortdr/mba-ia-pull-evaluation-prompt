@@ -1,0 +1,21 @@
+[
+    {
+        "precision": 1.0,
+        "recall": 0.7,
+        "reasoning": "A resposta gerada é altamente precisa e relevante em todo o conteúdo que apresenta. No entanto, o recall é impactado pela ausência completa da seção 'Métricas de Sucesso'. Além disso, a seção 'Contexto do Bug' omitiu a 'App Architecture', e alguns pontos específicos como 'pausar/retomar sincronização' e 'documentação' foram perdidos nas 'Tasks Técnicas Sugeridas'."
+    },
+    {
+        "precision": 0.95,
+        "recall": 0.85,
+        "reasoning": "A resposta demonstra alta precisão, identificando corretamente os problemas, impactos e propondo soluções e tarefas relevantes. Poucas informações são imprecisas ou irrelevantes. O recall é bom, cobrindo a maioria dos pontos essenciais da resposta esperada. No entanto, alguns detalhes específicos foram omitidos, como a escala de '10.000 usuários' nos critérios de aceitação, a query SQL de exemplo, a estratégia híbrida de cache detalhada e tarefas como testes de carga e documentação de arquitetura de cache/jobs."
+    },
+    {
+        "precision": 1.0,
+        "recall": 0.77,
+        "reasoning": "A resposta gerada é altamente precisa, com todas as informações corretas e relevantes, inclusive adicionando detalhes técnicos úteis (contexto de empilhamento, testes de responsividade). No entanto, o recall é afetado pela omissão de três pontos específicos da resposta esperada: o menu lateral deve ficar desfocado (backdrop), o modal deve ocupar pelo menos 90% da largura da tela, e o backdrop deve fechar ao clicar fora."
+    },
+    {
+        "score": 0.88,
+        "reasoning": "A resposta é excepcionalmente bem organizada e livre de ambiguidades, apresentando uma estrutura lógica clara com user story, critérios de aceitação detalhados e sugestões técnicas. A linguagem é direta e apropriada para o contexto técnico. Contudo, a concisão é ligeiramente comprometida pela repetição literal do fluxo do bug na seção 'Contexto Técnico' e pela extensão dos critérios de aceitação, que, embora completos, poderiam ser mais condensados."
+    }
+]
