@@ -46,8 +46,8 @@ bug_to_user_story_v2:
     [ ] Ação do usuário
     [ ] Problema descrito
     [ ] Comportamento esperado
-    [ ] TODOS os números / valores do bug
-    [ ] TODOS os elementos de UI mencionados
+    [ ] todos os números / valores do bug
+    [ ] todos os elementos de UI mencionados
     [ ] Plataforma/contexto técnico (se houver)
 
     Se algum item do bug não aparecer na resposta → resposta inválida
