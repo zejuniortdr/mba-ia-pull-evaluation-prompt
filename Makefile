@@ -6,3 +6,6 @@ push:
 
 evaluate:
 	uv run python src/evaluate.py
+
+test:
+	uv run pytest tests/test_prompts.py

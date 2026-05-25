@@ -12,7 +12,21 @@ dependencies = [
     "langchain-openai==0.2.14",
     "langsmith==0.2.7",
     "pydantic==2.10.4",
-    "pytest==8.3.4",
     "python-dotenv==1.0.1",
     "pyyaml==6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "ruff>=0.15.14",
+]
+
+
+[tool.ruff]
+# Adiciona arquivos/pastas à lista padrão de exclusões do Ruff
+extend-exclude = [
+    "src/metrics.py",
+    "src/evaluate.py",
+    "src/utils.py"
 ]

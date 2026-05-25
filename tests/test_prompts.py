@@ -9,7 +9,6 @@ from pathlib import Path
 # Adicionar src ao path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from utils import validate_prompt_structure
 
 PROMPT_V2_PATH = Path(__file__).parent.parent / "prompts" / "bug_to_user_story_v2.yml"
 
