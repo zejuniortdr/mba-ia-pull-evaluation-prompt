@@ -1,0 +1,209 @@
+[
+  {
+    "score": 0.93,
+    "reasoning": "A resposta do modelo é altamente precisa e focada. Ela formula corretamente a user story e a maioria dos critérios de aceitação. A única diferença em relação ao ground truth é a inclusão de 'ID 1234' no primeiro critério de aceitação ('Dado que estou visualizando a página do produto ID 1234'), enquanto o ground truth opta por uma generalização ('Dado que estou visualizando um produto'). Embora a especificidade do modelo seja derivada da pergunta do usuário, o ground truth indica uma preferência por critérios mais genéricos, resultando em uma pequena diferença na correção factual."
+  },
+  {
+    "score": 0.97,
+    "reasoning": "A resposta da IA reinterpreta corretamente a descrição do problema do usuário como uma user story e critérios de aceitação, sem alucinações. Está totalmente focada na questão, transformando a observação do usuário em um requisito claro. Os critérios de aceitação são factualmente corretos, embora o ground truth ofereça um nível de detalhe ligeiramente maior ao especificar a visibilidade, alinhamento e ausência de sobreposição de elementos, o que a resposta da IA engloba implicitamente em 'ajustar corretamente' e 'não deve ficar quebrado'."
+  },
+  {
+    "precision": 0.9,
+    "recall": 0.7,
+    "reasoning": "O modelo capturou a essência da história de usuário e os critérios básicos de \"Dado/Quando/Então\". Contudo, omitiu dois critérios de aceitação cruciais do ground truth que detalham um layout adaptado corretamente: \"todos os elementos devem permanecer visíveis e alinhados\" e \"não deve haver sobreposição de componentes\". A cláusula \"Dado\" também foi generalizada. O último critério de aceitação do modelo foi redundante."
+  },
+  {
+    "score": 0.97,
+    "reasoning": "A resposta gerada é altamente precisa e focada na pergunta do usuário. A user story e a maioria dos critérios de aceitação são idênticos ao Ground Truth. A única diferença mínima está no quarto critério de aceitação, onde a IA usou um exemplo específico ('não deve ser 50 quando há 42') em vez da formulação mais geral ('atualizado em tempo real') do Ground Truth. No entanto, isso não é uma alucinação ou erro factual, apenas uma abordagem ligeiramente diferente na especificação do critério."
+  },
+  {
+    "score": 0.93,
+    "reasoning": "A resposta é muito bem organizada, seguindo o formato padrão de User Story e Critérios de Aceitação, o que facilita a compreensão. A linguagem utilizada é simples e direta, sem jargões, tornando-a fácil de entender. Não há ambiguidades nas frases apresentadas. Contudo, o critério 'E o valor exibido não deve ser 50 quando há 42 usuários na lista' é um pouco redundante, pois o critério anterior já estabelece que o número deve corresponder ao total real, impactando ligeiramente a concisão. A ausência da menção à 'atualização em tempo real' (presente na referência) também poderia ter adicionado uma camada extra de clareza sobre o comportamento esperado."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.83,
+    "reasoning": "A resposta gerada replicou a user story e a maioria dos critérios de aceitação corretamente. No entanto, omitiu o critério 'E o valor deve ser atualizado em tempo real', substituindo-o por um exemplo específico do problema ('E o valor exibido não deve ser 50 quando há 42 usuários na lista'). Embora o exemplo seja relevante, a omissão do critério geral de atualização em tempo real impacta o recall."
+  },
+  {
+    "score": 0.95,
+    "reasoning": "A resposta é muito bem organizada, seguindo o formato padrão de user story e critérios de aceitação. A linguagem é simples e direta, facilitando a compreensão. É altamente não ambígua, especialmente ao especificar que o comportamento deve ser 'o mesmo que no Chrome', o que aborda diretamente o problema do usuário. A concisão é boa, evitando redundâncias, embora a user story seja ligeiramente mais longa que a referência."
+  },
+  {
+    "score": 0.92,
+    "reasoning": "A resposta gerada não apresenta alucinações e mantém o foco na pergunta do usuário. No entanto, a correção factual é ligeiramente comprometida pela incompletude em comparação com a resposta esperada. A resposta gerada omite critérios de aceitação importantes como 'E o cliente deve receber email de confirmação' e 'E o sistema deve logar o evento para auditoria', além de não incluir o 'Gateway: [nome do gateway de pagamento]' no contexto técnico. O que foi apresentado está correto, mas não é tão abrangente quanto o esperado."
+  },
+  {
+    "score": 0.98,
+    "reasoning": "A resposta gerada pela IA é exemplar em clareza. A organização é impecável, seguindo uma estrutura lógica de User Story, Critérios de Aceitação e Contexto Técnico. A linguagem é direta e acessível, sem jargões desnecessários. Não há ambiguidades; os critérios são precisos e diretamente relacionados ao problema do usuário, inclusive mencionando o valor do pedido. A concisão é alta, entregando todas as informações essenciais sem redundância, o que facilita a compreensão e a ação."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.7,
+    "reasoning": "A resposta gerada é totalmente correta e relevante. Todas as informações apresentadas estão alinhadas com a pergunta e o ground truth. No entanto, a resposta omitiu três critérios de aceitação importantes do ground truth: o envio de e-mail de confirmação ao cliente, o log do evento para auditoria e a menção ao nome do gateway no contexto técnico."
+  },
+  {
+    "score": 0.83,
+    "reasoning": "A resposta do modelo não apresenta alucinações e mantém o foco na pergunta, transformando o problema em um user story e critérios de aceitação. Contudo, há uma imprecisão factual crítica nos 'Critérios de Aceitação'. O modelo define o tempo de geração do relatório como 'menos de 120 segundos', que é o tempo de timeout atual e o limite superior do problema. A resposta esperada (Ground Truth) define corretamente um objetivo de performance mais ambicioso e realista de 'menos de 30 segundos', que representa uma melhoria significativa, não apenas evitar o timeout."
+  },
+  {
+    "score": 0.875,
+    "reasoning": "A resposta é bem organizada, utiliza linguagem clara e é concisa. Contudo, há uma ambiguidade crucial nos critérios de aceitação: 'Então o relatório deve ser gerado em menos de 120 segundos'. Este valor corresponde ao timeout atual, não a uma meta de desempenho otimizada. Isso falha em estabelecer um objetivo de velocidade claro e ambicioso, tornando a expectativa de melhoria menos precisa do que o ideal."
+  },
+  {
+    "precision": 0.875,
+    "recall": 0.6,
+    "reasoning": "A resposta gerada reproduziu a user story e a maioria dos critérios de aceitação corretamente. No entanto, errou o tempo de geração esperado (120s em vez de 30s) e omitiu informações cruciais do contexto técnico, como a performance esperada e a sugestão de otimização da query SQL. A precisão é alta pois a maioria do que foi gerado está correto, mas o recall é menor devido às omissões importantes."
+  },
+  {
+    "score": 0.9,
+    "reasoning": "A resposta da IA não contém alucinações e está totalmente focada em reestruturar o problema em um formato de história de usuário e critérios de aceitação. No entanto, a correção factual é ligeiramente menor porque a resposta omite detalhes importantes presentes na resposta esperada, como o código de status HTTP 403, a necessidade de log de auditoria para administradores, a classificação OWASP (A01:2021) e a sugestão de implementar middleware de autorização. Embora o que foi dito esteja correto, faltam informações valiosas para uma descrição completa e precisa."
+  },
+  {
+    "score": 0.9,
+    "reasoning": "A resposta é bem organizada, seguindo uma estrutura lógica de user story, critérios de aceitação e contexto técnico. A linguagem é clara, direta e fácil de entender, sem jargões desnecessários. Não há ambiguidades sobre o problema ou a solução esperada, com exemplos concretos. Embora haja uma leve redundância de informações entre as seções, ela não compromete a concisão de forma significativa, garantindo que todos os pontos essenciais sejam abordados."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.43,
+    "reasoning": "A resposta gerada é 100% precisa, contendo apenas informações corretas e relevantes. No entanto, o recall é baixo porque omite detalhes importantes da resposta esperada. Faltam o código HTTP 403, a permissão para usuários comuns acessarem seus próprios dados, todos os critérios de aceitação para administradores (HTTP 200, dados completos, log de auditoria), a classificação OWASP e a ação de implementar middleware de autorização."
+  },
+  {
+    "score": 0.9,
+    "reasoning": "A resposta é livre de alucinações e totalmente focada na pergunta, descrevendo corretamente o problema e o valor esperado. No entanto, sua correção factual é ligeiramente menor que a resposta esperada, pois omite detalhes importantes como a fórmula explícita de cálculo do valor final e o detalhamento (subtotal, desconto, total) nos critérios de aceitação, que são cruciais para uma especificação completa."
+  },
+  {
+    "score": 0.88,
+    "reasoning": "A resposta é bem organizada e utiliza linguagem clara e direta. A user story e os critérios de aceitação são concisos e abordam o problema central. Contudo, a clareza poderia ser aprimorada ao explicitar a regra geral de aplicação do desconto (ex: 'no valor total de todos os produtos'), em vez de apenas indicar o valor esperado. Isso reduziria a ambiguidade para cenários futuros e tornaria a solução mais robusta."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.5,
+    "reasoning": "A resposta do modelo apresenta uma user story e critérios de aceitação que são corretos e relevantes para o problema. No entanto, omite informações importantes da resposta esperada, como a regra geral de aplicar o desconto no valor total de todos os produtos, a fórmula de cálculo e a necessidade de detalhamento (subtotal, desconto, total). O modelo foca mais nos valores específicos do exemplo e na negação do bug, em vez das regras gerais de aceitação."
+  }, 
+  {
+    "score": 0.87,
+    "reasoning": "A resposta da IA demonstrou alta precisão na ausência de alucinações e foco na pergunta, transformando o problema em uma user story e critérios de aceitação válidos. No entanto, a correção factual foi ligeiramente menor porque a IA não gerou os 'Critérios Técnicos' (soluções) presentes no Ground Truth, como 'Implementar paginação' ou 'Carregar dados em background thread'. Em vez disso, ela apenas reiterou o problema sob 'Contexto Técnico'."
+  },
+  {
+    "score": 0.95,
+    "reasoning": "A resposta é excepcionalmente bem organizada, seguindo uma estrutura lógica de user story, critérios de aceitação e contexto técnico. A linguagem é clara e direta, explicando termos técnicos como ANR. Há pouca ambiguidade, embora 'carregada de forma responsiva' pudesse ser mais específica com um tempo limite. É concisa, fornecendo todas as informações essenciais sem redundância."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.68,
+    "reasoning": "A resposta do modelo é precisa (1.0), pois todas as informações fornecidas são corretas e relevantes, refletindo com precisão o problema e os resultados desejados. No entanto, seu recall é menor (0.68) devido a omissões significativas. A seção 'Critérios Técnicos', que detalha soluções cruciais como paginação, thread em segundo plano, RecyclerView e scroll infinito, está completamente ausente. Além disso, o critério de aceitação para o tempo de carregamento ('menos de 2 segundos') foi generalizado para 'de forma responsiva', perdendo especificidade."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.75,
+    "reasoning": "A resposta gerada é totalmente correta e relevante para o problema. Ela aborda o fluxo do bug e propõe critérios de aceitação válidos. No entanto, omite informações importantes da resposta esperada, como os 'Critérios de Prevenção' (reserva de estoque temporária, aviso de estoque limitado) e a sugestão de 'remover o item ou aguardar reposição' nos critérios de aceitação."
+  },
+  {
+    "score": 0.83,
+    "reasoning": "A resposta gerada não contém alucinações e mantém o foco na pergunta do usuário, transformando a descrição do problema em um formato de user story e critérios de aceitação. No entanto, a correção factual é comprometida por omissões significativas. A resposta gerada falha em incluir os 'Critérios de Acessibilidade' completos e dois dos 'Critérios de Aceitação' presentes no ground truth. Além disso, o 'Contexto Técnico' da resposta gerada apenas reitera os detalhes do problema, sem fornecer a explicação do bug ou a solução proposta, que são elementos chave no ground truth."
+  },
+  {
+    "score": 0.93,
+    "reasoning": "A resposta é muito clara e bem organizada, seguindo uma estrutura lógica de user story, critérios de aceitação e contexto técnico. A linguagem é simples e direta, facilitando a compreensão. Não há ambiguidades sobre o problema ou o comportamento esperado. É concisa, abordando os pontos essenciais da pergunta do usuário sem informações redundantes, embora a referência adicione detalhes importantes de acessibilidade e solução técnica."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.53,
+    "reasoning": "A resposta gerada é totalmente correta e relevante (Precision = 1.0). No entanto, omite várias informações importantes da resposta esperada. Faltam critérios de aceitação como o menu lateral desfocado e a largura do modal, todos os critérios de acessibilidade (foco do teclado, fechar com ESC, fechar backdrop ao clicar fora) e a solução técnica explícita para o z-index."
+  },
+  {
+    "score": 0.87,
+    "reasoning": "A resposta do modelo é altamente precisa na tradução dos problemas identificados em User Stories individuais, sem alucinações e com correção factual impecável. No entanto, o foco foi restrito apenas às User Stories, não abrangendo outros aspectos cruciais de uma avaliação especializada, como critérios técnicos detalhados, contexto do bug consolidado e tarefas técnicas sugeridas, que estavam presentes na resposta esperada e seriam valiosos para o cenário de 'falhas críticas'."
+  },
+  {
+    "score": 0.88,
+    "reasoning": "A resposta é muito bem organizada, com cada problema transformado em uma User Story clara e estruturada. A linguagem é direta e apropriada para o contexto técnico, sem ambiguidades. Os critérios de aceitação são específicos e fáceis de entender. A concisão é boa, fornecendo detalhes suficientes sem redundância, embora a abordagem de múltiplas histórias em vez de uma principal com sub-itens possa ser vista como ligeiramente menos concisa no geral, mas é eficaz para a clareza de cada ponto."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.33,
+    "reasoning": "A resposta da IA é altamente precisa, com todas as informações geradas sendo corretas e relevantes para os problemas identificados. No entanto, o recall é menor porque a IA omitiu seções significativas da 'Resposta Esperada' (Ground Truth), como os 'Critérios Técnicos' detalhados, o resumo completo do 'Contexto do Bug' (severidade, impacto quantificado, componentes afetados) e as 'Tasks Técnicas Sugeridas'."
+  },
+  {
+    "score": 0.89,
+    "reasoning": "A resposta é excelente em clareza. A organização é lógica, com cada problema transformado em uma User Story separada e bem estruturada. A linguagem é direta e fácil de entender, sem jargões desnecessários. A ausência de ambiguidade é um ponto forte, com critérios de aceitação específicos e um contexto técnico detalhado para cada história. A concisão é boa, embora haja uma leve redundância na repetição do 'Contexto Técnico' para cada User Story, o que é compensado pela clareza individual de cada uma."
+  },
+  {
+    "precision": 0.75,
+    "recall": 0.65,
+    "reasoning": "O modelo identificou corretamente quatro user stories distintas, extraindo muitos detalhes precisos dos problemas. No entanto, não gerou a 'User Story Principal' como uma única entidade. Além disso, omitiu alguns critérios de aceitação importantes (ex: invalidação automática de cache, processamento em background para exportação, limites de tempo/memória específicos) e formulou outros como negações do problema em vez de resultados positivos."
+  },
+  {
+    "score": 0.83,
+    "reasoning": "O modelo não apresenta alucinações, interpretando corretamente a solicitação como uma necessidade de user story e critérios de aceitação. Ele mantém o foco no problema do 'adicionar ao carrinho' para o produto ID 1234. Contudo, a correção factual é ligeiramente comprometida, pois o modelo omite dois critérios importantes presentes na Resposta Esperada: a necessidade de uma confirmação visual e a atualização do contador do carrinho, que são comportamentos padrão esperados para essa funcionalidade."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.75,
+    "reasoning": "A resposta do modelo é precisa, incorporando o ID do produto e gerando critérios de aceitação válidos e relevantes. No entanto, o recall é menor porque a resposta omitiu o critério de aceitação crucial de que 'o contador do carrinho deve ser atualizado' e cobriu apenas parcialmente a necessidade de 'ver uma confirmação visual' com uma confirmação específica do item no carrinho, em vez de uma geral."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.67,
+    "reasoning": "A resposta gerada captura bem a user story e a maioria dos critérios de aceitação. Ela traduz corretamente a necessidade de uma \"contagem correta\" para os números específicos (42, não 50) mencionados na pergunta do usuário, e adiciona um critério de consistência da lista. No entanto, omite dois critérios importantes da resposta esperada: a atualização em tempo real e a inclusão explícita de usuários com status 'ativo'."
+  },
+  {
+    "precision": 0.95,
+    "recall": 0.78,
+    "reasoning": "Precision é alta pois todas as informações geradas são corretas e relevantes, sem dados incorretos ou inventados. Recall é bom, mas sofre pela omissão completa do critério 'tempo de carregamento similar'. Além disso, a user story gerada não menciona explicitamente 'Safari', embora essa informação crucial esteja presente nos critérios de aceitação. O critério de 'qualidade' também é menos explícito, sendo coberto por 'comportamento consistente'."
+  },
+  {
+    "score": 0.87,
+    "reasoning": "A resposta da IA é bem estruturada e focada no problema, identificando corretamente a causa raiz (HTTP 500 no webhook). Não há alucinações. No entanto, a persona da 'user story' difere da esperada ('membro da equipe de operações' vs 'sistema de e-commerce'). Mais importante, a IA omite critérios de aceitação cruciais presentes no ground truth, como o envio de e-mail de confirmação ao cliente e o log do evento para auditoria, além de não especificar o nome do gateway no contexto técnico. Isso a torna menos completa e, portanto, menos precisa em termos de correção factual."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.75,
+    "reasoning": "A resposta gerada tem precisão perfeita, pois todas as informações são corretas e relevantes. No entanto, o recall é 0.75 porque omitiu a persona exata da User Story (sistema de e-commerce), dois critérios de aceitação importantes (email de confirmação ao cliente e log de auditoria) e a instrução de placeholder para o nome do gateway."
+  },
+  {
+    "precision": 0.6,
+    "recall": 0.9,
+    "reasoning": "A resposta gerada estruturou bem as informações, cobrindo todos os pontos da Ground Truth. No entanto, cometeu um erro crítico ao definir a performance esperada (tanto nos Critérios de Aceitação quanto no Contexto Técnico) como '< 120 segundos' em vez do correto '< 30 segundos'. Isso impacta a precisão. Houve pequenas omissões como 'otimizar query SQL' e 'clicar em Gerar Relatório', mas a maioria das informações foi incluída, justificando um recall alto."
+  }
+  {
+    "score": 0.88,
+    "reasoning": "A resposta é muito bem organizada, seguindo uma estrutura lógica de user story, critérios de aceitação detalhados por cenário e contexto técnico. A linguagem é simples e direta, facilitando a compreensão. A ausência de ambiguidade é alta, com exemplos claros e específicos. Contudo, a concisão poderia ser melhorada; há alguma repetição de informações (ex: lista de dados) e os critérios são um pouco mais verbosos do que o necessário, embora isso não prejudique a clareza geral."
+  },
+  {
+    "precision": 0.71,
+    "recall": 0.55,
+    "reasoning": "A resposta do modelo é precisa nos critérios de aceitação e na severidade. No entanto, reitera a descrição do problema, o que é desnecessário para uma resposta esperada focada na solução. O recall é penalizado pela omissão de detalhes cruciais como códigos HTTP (403, 200), log de auditoria para admins, a classificação OWASP (A01:2021) e a ação técnica de implementar middleware de autorização."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.8,
+    "reasoning": "A resposta gerada é totalmente correta e relevante (Precision 1.0). No entanto, omite três pontos importantes dos Critérios de Aceitação da resposta esperada: a regra geral de que o desconto deve ser aplicado ao valor total de *todos* os produtos, a fórmula de cálculo e a necessidade de detalhamento (subtotal, desconto, total). Isso resulta em um Recall de 0.8."
+  },
+  {
+    "precision": 0.95,
+    "recall": 0.85,
+    "reasoning": "A resposta do modelo é muito precisa na descrição do problema, impacto e user story. Apenas um critério de aceitação de tempo foi menos rigoroso (5s vs 2s). No entanto, o recall é afetado pela omissão de dois critérios técnicos importantes: 'Usar RecyclerView com ViewHolder pattern' e 'Implementar scroll infinito', além do detalhe '20 itens por vez' na paginação."
+  },
+  {
+    "precision": 1.0,
+    "recall": 0.6,
+    "reasoning": "A precisão é alta pois todas as informações geradas são corretas e relevantes, inclusive adicionando detalhes úteis. O recall é médio devido à omissão de pontos importantes como a persona da user story, os critérios de aceitação de UX (exibir mensagem e sugerir ação) e todos os critérios de prevenção (aviso de estoque limitado e reserva temporária de estoque)."
+  },
+  {
+    "precision": 0.95,
+    "recall": 0.77,
+    "reasoning": "A resposta do modelo é altamente precisa e bem estruturada, adicionando seções valiosas como 'Métricas de Sucesso' e um detalhamento de tarefas por sprint. Todas as informações fornecidas são corretas e relevantes. No entanto, omite alguns detalhes técnicos específicos (ex: CSP headers, exponential backoff, Redis para cupons, polling/webhooks) e a seção 'Múltiplos Componentes Afetados' do ground truth, impactando o recall."
+  },
+  {
+    "precision": 0.95,
+    "recall": 0.65,
+    "reasoning": "A resposta gerada é altamente precisa e relevante, capturando o impacto de negócio e os problemas de alto nível com excelente detalhe. No entanto, o recall é afetado pela omissão de vários detalhes técnicos específicos nos 'Critérios Técnicos' (ex: eager loading, materialized views, job queue details) e em alguns 'Critérios de Aceitação' (ex: notificação de exportação, tempo de cache para dados críticos), que estavam presentes na resposta esperada."
+  },
+  {
+    "precision": 0.95,
+    "recall": 0.70,
+    "reasoning": "A resposta é altamente precisa, com todas as informações geradas sendo corretas e relevantes. No entanto, o recall é moderado devido à omissão de detalhes importantes. Os 'Critérios Técnicos' foram muito menos detalhados que o esperado, faltando especificações de protocolos e algoritmos (ex: CRDTs, chunked upload protocol). As 'Tasks Técnicas Sugeridas' também foram menos granulares e perderam fases inteiras. Além disso, a seção 'App Architecture' do contexto foi omitida."
+  }
+]
